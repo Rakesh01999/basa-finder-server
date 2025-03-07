@@ -89,7 +89,7 @@ const getAllRentalHouses = async (req: Request, res: Response): Promise<void> =>
 const getSingleRentalHouse = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await RentalHouseServices.getSingleRentalHouseFromDB(id);
-
+    console.log("Fetching rental house with ID:", id);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,

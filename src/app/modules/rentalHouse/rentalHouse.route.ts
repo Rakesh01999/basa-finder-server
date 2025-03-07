@@ -18,7 +18,7 @@ router.post(
 router.get('/listings', RentalHouseControllers.getAllRentalHouses);
 
 // Route to get a single rental house by ID (Public)
-router.get('/listings/:id', RentalHouseControllers.getSingleRentalHouse);
+router.get('/listings/:id',RentalHouseControllers.getSingleRentalHouse);
 
 // Route to get all rental houses by landlord (Private - Landlord)
 router.get(

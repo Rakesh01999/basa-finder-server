@@ -1,3 +1,4 @@
+// route.ts
 import express from 'express';
 import { RentalRequestControllers } from './rentalRequest.controller';
 import auth from '../../middlewares/auth';

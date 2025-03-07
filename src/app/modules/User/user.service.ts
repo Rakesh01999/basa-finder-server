@@ -211,6 +211,55 @@ const blockUserInDB = async (id: string): Promise<TUser | null> => {
   }
 };
 
+const activateUserInDB = async (id: string): Promise<TUser | null> => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const activeUser = await User.findByIdAndUpdate(
+      id,
+      // { status: "blocked"  },
+      { isBlocked: false, status: "active" },
+      // { isBlocked: true }, // Soft block by setting `isDeleted` to true
+      { new: true, session },
+    );
+
+    if (!activeUser) {
+      throw new AppError(404, 'User not found for activating');
+    }
+
+    await session.commitTransaction();
+    return activeUser;
+  } catch (error) {
+    await session.abortTransaction();
+    console.error('Transaction Error:', error);
+    throw new AppError(400, 'Failed to active user');
+  } finally {
+    session.endSession();
+  }
+};
+
+const updateUserRole = async (userId: string, newRole: string) => {
+  const validRoles = ["admin", "landlord", "tenant"];
+
+  // Check if the role is valid
+  if (!validRoles.includes(newRole)) {
+    throw new AppError(httpStatus.BAD_REQUEST, "Invalid role!");
+  }
+
+  // Find user and update role
+  const user = await User.findByIdAndUpdate(
+    userId,
+    { role: newRole },
+    { new: true }
+  );
+
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, "User not found!");
+  }
+
+  return user;
+};
+
 
 const changePassword = async (
   userData: JwtPayload,
@@ -298,6 +347,8 @@ export const UserServices = {
   updateUserInDB,
   deleteUserFromDB,
   blockUserInDB,
+  activateUserInDB,
   refreshToken,
   changePassword,
+  updateUserRole,
 };

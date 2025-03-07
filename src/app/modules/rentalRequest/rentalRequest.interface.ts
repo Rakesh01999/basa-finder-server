@@ -1,3 +1,4 @@
+// interface.ts
 import { Model } from 'mongoose';
 
 export const REQUEST_STATUS = {

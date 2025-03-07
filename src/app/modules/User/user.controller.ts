@@ -124,10 +124,35 @@ const blockUser = catchAsync(async (req, res) => {
   });
 });
 
+const activateUser = catchAsync(async (req, res) => {
+  const { usrId } = req.params
+  const result = await UserServices.activateUserInDB(usrId)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User is activated',
+    data: result,
+  });
+});
+
+const updateUserRole = catchAsync(async (req, res) => {
+  const { userId } = req.params;
+  const { role } = req.body;
+
+  const updatedUser = await UserServices.updateUserRole(userId, role);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User role updated successfully",
+    data: updatedUser,
+  });
+});
+
 const changePassword = catchAsync(async (req, res) => {
 
   const { ...passwordData } = req.body;
-
+console.log(req.body);
   const result = await UserServices.changePassword(req.user!, passwordData);
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -161,4 +186,6 @@ export const UserControllers = {
   blockUser,
   refreshToken,
   changePassword,
+  activateUser,
+  updateUserRole
 };

@@ -3,6 +3,7 @@ import { Document, Model } from 'mongoose';
 
 export interface TPayment extends Document {
     tenantEmail: string;
+    tenantId: string;
     listingId: string;
     requestId: string;
     amount: number;

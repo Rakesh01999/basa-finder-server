@@ -4,6 +4,11 @@ import { PaymentModel, TPayment } from './payment.interface';
 
 const paymentSchema = new Schema<TPayment, PaymentModel>(
   {
+    tenantId: { 
+      type: String, 
+      // required: true,  // Ensure tenantId is always stored
+      trim: true 
+    },
     tenantEmail: {
       type: String,
       required: [true, 'Tenant email is required'],

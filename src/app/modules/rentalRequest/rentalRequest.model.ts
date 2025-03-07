@@ -1,3 +1,4 @@
+// model.ts
 import { Schema, model } from 'mongoose';
 import { TRentalRequest, RentalRequestModel, REQUEST_STATUS } from './rentalRequest.interface';
 

@@ -38,6 +38,14 @@ router.patch(
 
 router.put('/:userId', auth("admin"), UserControllers.blockUser);
 
+router.patch('/:usrId', auth("admin"), UserControllers.activateUser);
+
+router.put(
+  "/admin/users/:userId",
+  auth("admin"),
+  UserControllers.updateUserRole
+);
+
 router.delete('/:id', UserControllers.deleteUser);
 
 router.post(

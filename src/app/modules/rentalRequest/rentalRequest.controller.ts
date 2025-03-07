@@ -1,3 +1,4 @@
+// controller.ts
 import { Request, Response } from 'express';
 import { RentalRequestServices } from './rentalRequest.service';
 import { rentalRequestValidationSchema, updateRentalRequestValidationSchema } from './rentalRequest.validation';

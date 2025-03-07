@@ -1,3 +1,4 @@
+// service.ts
 import { FilterQuery } from "mongoose";
 import { TRentalRequest } from "./rentalRequest.interface";
 import { RentalRequest } from "./rentalRequest.model";
