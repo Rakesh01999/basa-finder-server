@@ -10,7 +10,6 @@ import AppError from '../../errors/AppError';
 const createRentalHouse = catchAsync(async (req: Request, res: Response) => {
     
     const { rentalHouse: rentalHouseData } = req.body;
-    console.log('f-rhc,rentalHouseData', rentalHouseData);
     
     // Add landlord ID from authenticated user
     rentalHouseData.landlordId = req.user.id;
@@ -89,7 +88,7 @@ const getAllRentalHouses = async (req: Request, res: Response): Promise<void> =>
 const getSingleRentalHouse = catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await RentalHouseServices.getSingleRentalHouseFromDB(id);
-    console.log("Fetching rental house with ID:", id);
+    console.log('f-rhc:id',id);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -101,7 +100,7 @@ const getSingleRentalHouse = catchAsync(async (req: Request, res: Response) => {
 const getRentalHousesByLandlord = catchAsync(async (req: Request, res: Response) => {
     const landlordId = req.user.id;
     const result = await RentalHouseServices.getRentalHousesByLandlord(landlordId);
-
+    console.log('f-rfc: landlordId',landlordId);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,

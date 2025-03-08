@@ -15,6 +15,9 @@ export type TRentalRequest = {
     landlordId: string;
     message: string; // Special requirements, move-in dates, etc.
     status: TRequestStatus;
+    location: string;
+    bedrooms: number;
+    rentAmount: number;
     landlordPhone?: string; // Optional, provided by landlord after approval
     paymentStatus?: 'pending' | 'paid';
     createdAt?: Date;

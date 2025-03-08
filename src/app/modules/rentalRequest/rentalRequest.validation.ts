@@ -14,6 +14,10 @@ const rentalRequestValidationSchema = z.object({
     required_error: 'landlordId ID is required'
   }),
   
+  bedrooms:z.number(),
+  rentAmount:z.number(),
+  location:z.string(),
+
   message: z.string({
     required_error: 'Message is required'
   }).min(10, 'Message must be at least 10 characters long'),

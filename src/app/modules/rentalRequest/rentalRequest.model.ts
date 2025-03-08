@@ -29,6 +29,12 @@ const rentalRequestSchema = new Schema<TRentalRequest, RentalRequestModel>(
             type: String,
             required: false,
         },
+
+        location: {
+            type: String,
+        },
+        bedrooms: { type: Number },
+        rentAmount: { type: Number },
         paymentStatus: {
             type: String,
             enum: ['pending', 'paid'],
@@ -75,7 +81,7 @@ rentalRequestSchema.pre('find', function (next) {
 
 // Static method to check if a request already exists
 rentalRequestSchema.statics.isRequestExists = async function (rentalHouseId: string, tenantId: string) {
-    const request = await this.findOne({ 
+    const request = await this.findOne({
         rentalHouseId,
         tenantId,
         status: { $in: ['pending', 'approved'] },

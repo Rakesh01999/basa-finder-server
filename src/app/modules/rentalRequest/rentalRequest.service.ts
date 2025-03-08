@@ -14,7 +14,7 @@ const createRentalRequestInDB = async (requestData: TRentalRequest) => {
     // Check if the rental house exists and is available
     // const rentalHouse = await RentalHouse.isRentalHouseAvailable(requestData.rentalHouseId);
     await RentalHouse.isRentalHouseAvailable(requestData.rentalHouseId);
-    
+    console.log(requestData);
     // Check if the tenant already has a pending or approved request for this rental house
     if (await RentalRequest.isRequestExists(requestData.rentalHouseId, requestData.tenantId, requestData.landlordId)) {
         throw new AppError(httpStatus.CONFLICT, "You already have a pending or approved request for this rental house");
