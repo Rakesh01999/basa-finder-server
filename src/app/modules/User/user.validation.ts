@@ -17,8 +17,8 @@ export const createUserValidationSchema = z.object({
       .enum(['admin', 'landlord', 'tenant'], {
         // invalid_type_error: "Role must be either 'admin' or 'customer'",
         invalid_type_error: "Role must be either 'admin', 'landlord', or 'tenant'",
-      })
-      .default('tenant'),
+      }),
+      // .default('tenant'),
     isBlocked: z.boolean().default(false),
   }),
 });

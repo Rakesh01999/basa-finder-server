@@ -20,7 +20,8 @@ const rentalRequestValidationSchema = z.object({
 
   message: z.string({
     required_error: 'Message is required'
-  }).min(10, 'Message must be at least 10 characters long'),
+  // }).min(10, 'Message must be at least 10 characters long'),
+  }).min(0, 'Message must be at least 10 characters long').optional(),
   
   status: z.enum(['pending', 'approved', 'rejected']).default('pending'),
   

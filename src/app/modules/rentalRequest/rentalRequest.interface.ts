@@ -13,7 +13,7 @@ export type TRentalRequest = {
     rentalHouseId: string;
     tenantId: string;
     landlordId: string;
-    message: string; // Special requirements, move-in dates, etc.
+    message?: string; // Special requirements, move-in dates, etc.
     status: TRequestStatus;
     location: string;
     bedrooms: number;

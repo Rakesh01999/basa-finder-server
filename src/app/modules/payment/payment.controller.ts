@@ -12,8 +12,10 @@ const createPayment = catchAsync(async (req: Request, res: Response) => {
     const user = req.user;
     const clientIp = req.ip || "";
 
+    console.log(req.user);
     // Validate the request body
     PaymentValidationSchema.parse(req.body);
+    console.log("Received Payment Request:", req.body);
 
     const checkoutUrl = await PaymentService.createPaymentInDB(user, req.body, clientIp);
 

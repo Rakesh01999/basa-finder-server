@@ -12,7 +12,9 @@ const createRentalRequest = catchAsync(async (req: Request, res: Response) => {
     
     // Add tenant ID from authenticated user
     rentalRequestData.tenantId = req.user.id;
+
     const validatedData = rentalRequestValidationSchema.parse(rentalRequestData);
+    
     // const result = await RentalRequestServices.createRentalRequestInDB(validatedData);
     const result = await RentalRequestServices.createRentalRequestInDB(validatedData);
     console.log(result);

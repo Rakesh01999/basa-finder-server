@@ -27,9 +27,10 @@ const createPaymentInDB = async (
     payload: IPaymentPayload,
     client_ip: string
 ) => {
+    console.log("Validating Payment Data:", payload);
     // Validate request exists and is approved
     const request = await RentalRequest.findById(payload.requestId);
-    
+
     if (!request) {
         throw new AppError(httpStatus.NOT_FOUND, 'Rental request not found');
     }
